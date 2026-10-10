@@ -6,18 +6,41 @@
 <body>
 	<h1>My Simple Calculator</h1>
 	
-	<input type="number" id="num1" placeholder="First number">
-	<input type="number" id="num2" placeholder="Second number">
-	<button onclick="addNumbers()">Add</button>
+	<label>First Number</label>
+	<input type="number" id="num1" placeholder="First number"><br><br>
 	
-	<p id="result">Result: </p>
+	<label>Second Number</label>
+	<input type="number" id="num2" placeholder="Second number"><br><br>
+	
+	<button onclick="calculate('+')">Add (+)</button>
+    <button onclick="calculate('-')">Subtract (-)</button>
+    <button onclick="calculate('*')">Multiply (*)</button>
+    <button onclick="calculate('/')">Divide (/)</button>
+	
+	<h3 id="result">Result: </h3>
 	
 	<script>
-		function addNumbers(){
+		function calculate(operator){
 			let a = Number(document.getElementById("num1").value);
 			let b = Number(document.getElementById("num2").value);
+			let answer;
+
+            if (operator === '+') {
+                answer = a + b;
+            } else if (operator === '-') {
+                answer = a - b;
+            } else if (operator === '*') {
+                answer = a * b;
+            } else if (operator === '/') {
+                if (b === 0) {
+                    document.getElementById("result").innerHTML =
+                        "Cannot divide by zero!";
+                    return;
+                }
+                answer = a / b;
+            }
 			
-			document.getElementById("result").textContent = "Result:" + (a+b);
+			document.getElementById("result").innerHTML = "Result:" + answer;
 		}
 	</script>
 </body>
